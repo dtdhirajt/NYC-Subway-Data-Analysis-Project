@@ -1,0 +1,68 @@
+# Let's do it!! Now it's your turn to gather data. Please write bellow a Python code to access the link http://web.mta.info/developers/turnstile.html and download all files from June 2017. The file must be named turnstile_100617.txt, where 10/06/17 is the file's date.
+# Please see below a few commands that might help you:
+# Use the urllib library to open and redeem a webpage. Use the command below, where url is the webpage path to the following file:
+# u = urllib.urlopen(url)
+# html = u.read()
+# Use the BeautifulSoup library to search for the link to the file you want to donwload in the page. Use the command below to create your soup object and search for all 'a' tags in the document:
+# soup = BeautifulSoup(html, "html.parser")
+# links = soup.find_all('a')
+# A tip to only download the files from June is to check data in the name of the file. For instance, to donwload the 17/06/2017 file, please see if the link ends with "turnstile_170610.txt". If you forget to do this, you will download all files from that page. In order to do this, you can use the following command:
+# if '1706' in link.get('href'):
+# Our final tip is to use the command bellow to download the txt file:
+# urllib.urlretrieve(link_do_arquivo, filename)
+# Please remember - you first have to load all packages and functions that will be used in your analysys.
+
+import urllib.request
+from bs4 import BeautifulSoup
+import re
+
+#your code here
+with urllib.request.urlopen("http://web.mta.info/developers/turnstile.html") as url :
+    html = url.read()
+
+soup = BeautifulSoup(html,"html.parser")
+links = soup.find_all('a')
+
+for link in links :
+    #print(link.get('href'))
+    if link.get('href') and '1706' in link.get('href') :
+        filename = re. split( '\/',link.get('href'))
+        newurl = 'http://web.mta.info/developers/' + link.get('href')
+        urllib.request.urlretrieve(newurl, filename[3])
+    
+    elif link.get('href') and '1707' in link.get('href') :
+        filename = re. split( '\/',link.get('href'))
+        newurl = 'http://web.mta.info/developers/' + link.get('href')
+        urllib.request.urlretrieve(newurl, filename[3])
+        
+    elif link.get('href') and '1708' in link.get('href') :
+        filename = re. split( '\/',link.get('href'))
+        newurl = 'http://web.mta.info/developers/' + link.get('href')
+        urllib.request.urlretrieve(newurl, filename[3])
+        
+    elif link.get('href') and '1709' in link.get('href') :
+        filename = re. split( '\/',link.get('href'))
+        newurl = 'http://web.mta.info/developers/' + link.get('href')
+        urllib.request.urlretrieve(newurl, filename[3])
+        
+    elif link.get('href') and '1710' in link.get('href') :
+        filename = re. split( '\/',link.get('href'))
+        newurl = 'http://web.mta.info/developers/' + link.get('href')
+        urllib.request.urlretrieve(newurl, filename[3])
+        
+    elif link.get('href') and '1711' in link.get('href') :
+        filename = re. split( '\/',link.get('href'))
+        newurl = 'http://web.mta.info/developers/' + link.get('href')
+        urllib.request.urlretrieve(newurl, filename[3])
+
+    elif link.get('href') and '1712' in link.get('href') :
+        filename = re. split( '\/',link.get('href'))
+        newurl = 'http://web.mta.info/developers/' + link.get('href')
+        urllib.request.urlretrieve(newurl, filename[3])
+        
+    elif link.get('href') and '18' in link.get('href') :
+        filename = re. split( '\/',link.get('href'))
+        if 'turnstile_18' in filename[3] :
+            #print (filename[3])
+            newurl = 'http://web.mta.info/developers/' + link.get('href')
+            urllib.request.urlretrieve(newurl, filename[3])
