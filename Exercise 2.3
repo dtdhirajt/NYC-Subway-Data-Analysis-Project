@@ -1,0 +1,16 @@
+# Calculate if the day was cloudy or not (0 or 1) and the maximum temperature for fog (i.e. the maximum temperature for cloudy days).
+
+def max_temp_aggregate_by_fog(df):
+    max_temp = 0.0
+
+    for index, row in df.iterrows() :
+        if row["fog"] == 1 :
+            if row["maxtempi"] > max_temp :
+                max_temp = row["maxtempi"]
+           
+    return max_temp
+    
+df["fog"] = df.fog.astype(int)
+max_temp_cloudy = max_temp_aggregate_by_fog(df)
+max_temp_cloudy
+
