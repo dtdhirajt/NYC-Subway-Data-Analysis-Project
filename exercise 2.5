@@ -1,0 +1,22 @@
+# Calculate the mean of the minimum temperature 'mintempi' for the days when the minimum temperature was greater that 55 degrees:
+
+import pandas as pd
+
+def avg_min_temperature(filename):
+    df = pd.read_csv(filename,sep=",")
+    count = 0
+    total_mintempi = 0.0
+    df["rain"] = df.rain.astype(int)
+    
+    for index, row in df.iterrows() :
+        if row["mintempi"] > 55 and row["rain"] == 1:
+            total_mintempi += row["mintempi"]
+            count += 1
+            
+    avg_min_temp_rainy = total_mintempi / count
+    
+    return avg_min_temp_rainy
+
+filename = "turnstile_data_master_with_weather.csv"
+mean_min_temp = avg_min_temperature(filename)
+mean_min_temp
