@@ -1,0 +1,24 @@
+# For this exercise, you will write a function that reads the master_file created in the previous exercise and load it into a Pandas Dataframe. This function can be filtered, so that the Dataframe only has lines where column "DESCn" has the value "Regular".
+# For example, if the Pandas Dataframe looks like this:
+#,C/A,UNIT,SCP,DATEn,TIMEn,DESCn,ENTRIESn,EXITSn
+# 0,A002,R051,02-00-00,05-01-11,00:00:00,REGULAR,3144312,1088151
+# 1,A002,R051,02-00-00,05-01-11,04:00:00,DOOR,3144335,1088159
+# 2,A002,R051,02-00-00,05-01-11,08:00:00,REGULAR,3144353,1088177
+# 3,A002,R051,02-00-00,05-01-11,12:00:00,DOOR,3144424,1088231
+# The Dataframe must look like the following, after filtering only the lines where column DESCn has the value REGULAR:
+# 0,A002,R051,02-00-00,05-01-11,00:00:00,REGULAR,3144312,1088151
+# 2,A002,R051,02-00-00,05-01-11,08:00:00,REGULAR,3144353,1088177
+
+import pandas as pd
+import os
+def filter_by_regular(filename):
+    data = pd.read_csv(filename)
+    is_regular = data["DESCn"]=='REGULAR'
+    turnstile_data = data[is_regular]
+
+    return turnstile_data
+
+for root, dirs, files in os.walk("/Users/dhirajtagadapallewar/Downloads"):  
+    for filename in files:
+        if 'output.txt' in filename :
+            df = filter_by_regular(filename)
